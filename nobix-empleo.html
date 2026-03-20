@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trabaja con Nosotros — Nobix Fibra Óptica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-deep: #050d1a;
+      --blue-mid:  #0a1f3d;
+      --blue-card: #0d2244;
+      --neon:      #00c6ff;
+      --neon2:     #0072ff;
+      --text:      #e8f0fe;
+      --muted:     #7a93b8;
+      --border:    rgba(0,198,255,0.18);
+      --success:   #00e5a0;
+      --error:     #ff5c6c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--blue-deep);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* animated grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,198,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,198,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* glowing orbs */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 15% 20%, rgba(0,114,255,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 85% 75%, rgba(0,198,255,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      width: 100%;
+      max-width: 860px;
+      padding: 3rem 2rem 0;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeDown 0.7s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--neon2), var(--neon));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(0,198,255,0.4);
+    }
+
+    .logo-icon svg { width: 24px; height: 24px; }
+
+    .logo-text {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span { color: var(--neon); }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,198,255,0.1);
+      border: 1px solid var(--border);
+      color: var(--neon);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-family: 'Exo 2', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+    }
+
+    header h1 .highlight {
+      background: linear-gradient(90deg, var(--neon), var(--neon2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ─── BENEFITS ─── */
+    .benefits {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .benefit {
+      background: rgba(0,198,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .benefit span { color: var(--neon); }
+
+    /* ─── CARD ─── */
+    .card {
+      width: 100%;
+      max-width: 680px;
+      margin: 2.5rem auto 4rem;
+      padding: 2.5rem 2.5rem;
+      background: var(--blue-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 60px rgba(0,198,255,0.06), 0 20px 60px rgba(0,0,0,0.4);
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* glow top border */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    }
+
+    .card-title {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── FIELDS ─── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .field:nth-child(1) { animation-delay: 0.2s; }
+    .field:nth-child(2) { animation-delay: 0.25s; }
+    .field:nth-child(3) { animation-delay: 0.3s; }
+    .field:nth-child(4) { animation-delay: 0.35s; }
+    .field:nth-child(5) { animation-delay: 0.4s; grid-column: 1 / -1; }
+    .field:nth-child(6) { animation-delay: 0.45s; grid-column: 1 / -1; }
+    .field:nth-child(7) { animation-delay: 0.5s;  grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    label .req { color: var(--neon); margin-left: 2px; }
+
+    input, select, textarea {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(0,198,255,0.2);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      width: 100%;
+    }
+
+    input::placeholder, textarea::placeholder { color: rgba(122,147,184,0.5); }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--neon);
+      background: rgba(0,198,255,0.06);
+      box-shadow: 0 0 0 3px rgba(0,198,255,0.1);
+    }
+
+    select { cursor: pointer; }
+    select option { background: var(--blue-mid); color: var(--text); }
+
+    textarea { resize: vertical; min-height: 110px; }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      grid-column: 1 / -1;
+      height: 1px;
+      background: var(--border);
+      margin: 0.5rem 0;
+    }
+
+    .section-label {
+      grid-column: 1 / -1;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--neon);
+      margin-top: 0.3rem;
+    }
+
+    /* ─── SUBMIT ─── */
+    .submit-wrap {
+      margin-top: 1.8rem;
+      animation: fadeUp 0.5s 0.55s ease both;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--neon2), var(--neon));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 1rem 2rem;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      box-shadow: 0 4px 20px rgba(0,114,255,0.35);
+    }
+
+    .submit-btn:hover {
+      opacity: 0.9;
+      box-shadow: 0 6px 30px rgba(0,198,255,0.4);
+    }
+
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── MESSAGES ─── */
+    .msg {
+      display: none;
+      margin-top: 1.2rem;
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .msg.success {
+      background: rgba(0,229,160,0.1);
+      border: 1px solid rgba(0,229,160,0.35);
+      color: var(--success);
+    }
+
+    .msg.error {
+      background: rgba(255,92,108,0.1);
+      border: 1px solid rgba(255,92,108,0.35);
+      color: var(--error);
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 2rem 1.5rem; margin: 2rem 1rem 3rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field { grid-column: 1 / -1 !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10"/>
+        <path d="M12 7V2M17 7l3-3M7 7 4 4"/>
+      </svg>
+    </div>
+    <div class="logo-text">NOBIX <span>Fibra</span></div>
+  </div>
+
+  <div class="hero-badge">🚀 Estamos contratando</div>
+  <h1>Únete al equipo<br><span class="highlight">más conectado del país</span></h1>
+  <p>Buscamos personas con ganas de crecer en el mundo de las telecomunicaciones. Completa el formulario y nos ponemos en contacto contigo.</p>
+
+  <div class="benefits">
+    <div class="benefit"><span>✓</span> Sueldo competitivo</div>
+    <div class="benefit"><span>✓</span> Capacitación constante</div>
+    <div class="benefit"><span>✓</span> Buen clima laboral</div>
+    <div class="benefit"><span>✓</span> Crecimiento real</div>
+  </div>
+</header>
+
+<!-- FORM CARD -->
+<div class="card">
+  <div class="card-title">📋 Formulario de postulación</div>
+
+  <!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  PASO 1 — Reemplaza la URL de abajo con la de tu Apps Script ║
+  ║  (ver instrucciones en el archivo apps-script.gs)            ║
+  ╚══════════════════════════════════════════════════════════════╝
+  -->
+  <form id="jobForm">
+    <div class="form-grid">
+
+      <div class="section-label">Datos personales</div>
+
+      <div class="field">
+        <label>Nombre completo <span class="req">*</span></label>
+        <input type="text" name="nombre" placeholder="Juan Pérez García" required />
+      </div>
+
+      <div class="field">
+        <label>Correo electrónico <span class="req">*</span></label>
+        <input type="email" name="correo" placeholder="juan@correo.com" required />
+      </div>
+
+      <div class="field">
+        <label>Teléfono / WhatsApp <span class="req">*</span></label>
+        <input type="tel" name="telefono" placeholder="+51 999 000 000" required />
+      </div>
+
+      <div class="field">
+        <label>Edad</label>
+        <input type="number" name="edad" placeholder="25" min="18" max="65" />
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Postulación</div>
+
+      <div class="field" style="grid-column: 1 / -1;">
+        <label>Puesto de interés <span class="req">*</span></label>
+        <select name="puesto" required>
+          <option value="" disabled selected>Selecciona un puesto...</option>
+          <option>Técnico de instalación de fibra óptica</option>
+          <option>Asesor comercial / Ventas</option>
+          <option>Soporte técnico al cliente</option>
+          <option>Administración y back office</option>
+          <option>Otro / Lo que necesiten</option>
+        </select>
+      </div>
+
+      <div class="field" style="grid-column: 1 / -1;">
+        <label>¿Por qué quieres trabajar en Nobix? <span class="req">*</span></label>
+        <textarea name="mensaje" placeholder="Cuéntanos sobre tu experiencia, motivación y disponibilidad..." required></textarea>
+      </div>
+
+    </div>
+
+    <div class="submit-wrap">
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span class="spinner" id="spinner"></span>
+        <span id="btnText">Enviar postulación</span>
+      </button>
+
+      <div class="msg success" id="successMsg">
+        ✅ ¡Postulación enviada con éxito! Revisaremos tus datos y te contactaremos pronto.
+      </div>
+      <div class="msg error" id="errorMsg">
+        ❌ Error al enviar. Verifica tu conexión e inténtalo de nuevo.
+      </div>
+
+      <p class="footer-note">
+        Tus datos van directo a Google Sheets de Nobix. No se comparten con terceros.
+      </p>
+    </div>
+  </form>
+</div>
+
+<script>
+  // ⚠️ REEMPLAZA ESTA URL con la URL de tu Google Apps Script desplegado
+  const SCRIPT_URL = "https://script.google.com/macros/s/TU_ID_AQUI/exec";
+
+  const form = document.getElementById('jobForm');
+  const btn  = document.getElementById('submitBtn');
+  const spinner   = document.getElementById('spinner');
+  const btnText   = document.getElementById('btnText');
+  const successMsg = document.getElementById('successMsg');
+  const errorMsg   = document.getElementById('errorMsg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    btn.disabled = true;
+    spinner.style.display = 'block';
+    btnText.textContent = 'Enviando...';
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    // Recopilar todos los campos del formulario
+    const data = {};
+    new FormData(form).forEach((val, key) => { data[key] = val; });
+    data['fecha'] = new Date().toLocaleString('es-PE');
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',   // necesario para Google Apps Script
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      // no-cors no devuelve respuesta, asumimos éxito si no hubo excepción
+      successMsg.style.display = 'block';
+      form.reset();
+    } catch (err) {
+      errorMsg.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      btnText.textContent = 'Enviar postulación';
+    }
+  });
+</script>
+
+</body>
+</html>
